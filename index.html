@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAIS2GATHER | Home</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #020617, #0b0f19 80%);
+      color: #e5e7eb;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 8%;
+      z-index: 100;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    .logo img {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      animation: logoFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+    }
+
+    nav ul li a {
+      color: #e5e7eb;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color .2s ease;
+    }
+
+    nav ul li a:hover {
+      color: #38bdf8;
+    }
+
+    .cover {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 100vh;
+      background: url('./img/bg/image.png') center/cover no-repeat;
+      color: #f8fafc;
+      overflow: hidden;
+    }
+
+    .cover::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.4), rgba(2, 6, 23, 0.9));
+      z-index: 0;
+    }
+
+    .cover-content {
+      position: relative;
+      z-index: 1;
+      animation: fadeIn 1.5s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .cover h1 {
+      font-size: 3.4rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #38bdf8, #60a5fa, #7dd3fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 25px rgba(56,189,248,0.5);
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { text-shadow: 0 0 25px rgba(56,189,248,0.5); }
+      50% { text-shadow: 0 0 45px rgba(56,189,248,0.9); }
+    }
+
+    .cover p {
+      font-size: 1.2rem;
+      color: #cbd5e1;
+      margin-top: 14px;
+      margin-bottom: 24px;
+      animation: fadeIn 2s ease-out 0.4s both;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeIn 2.5s ease-out 0.8s both;
+    }
+
+    .cover button, .pesan-btn {
+      border: none;
+      padding: 14px 32px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .cover button {
+      background: linear-gradient(90deg, #38bdf8, #0ea5e9);
+      color: #0f172a;
+      box-shadow: 0 0 15px rgba(56,189,248,0.4);
+    }
+
+    .pesan-btn {
+      background: linear-gradient(90deg, #10b981, #14b8a6);
+      color: #0f172a;
+      box-shadow: 0 0 15px rgba(20,184,166,0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pesan-btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      box-shadow: 0 0 20px 4px rgba(20,184,166,0.6);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      animation: pulseGlow 2.5s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    .cover button:hover, .pesan-btn:hover {
+      transform: translateY(-4px) scale(1.05);
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(56,189,248,0.5);
+      animation: floatParticle linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes floatParticle {
+      from { transform: translateY(100vh) scale(0.2); opacity: 0; }
+      50% { opacity: 1; }
+      to { transform: translateY(-10vh) scale(1); opacity: 0; }
+    }
+
+    .product-section {
+      padding: 100px 10%;
+      background: #0b1120;
+      text-align: center;
+    }
+
+    .product-section h2 {
+      font-size: 2rem;
+      margin-bottom: 40px;
+      color: #38bdf8;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      background: rgba(15,23,42,0.8);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 25px rgba(56,189,248,0.25);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    .product-card .info {
+      padding: 16px;
+    }
+
+    .product-card .info h3 {
+      color: #38bdf8;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .product-card .info p {
+      font-size: 0.95rem;
+      color: #94a3b8;
+    }
+
+    .review-section {
+      padding: 100px 10%;
+      background: #0f172a;
+      text-align: center;
+    }
+
+    .review-section h2 {
+      font-size: 2rem;
+      margin-bottom: 40px;
+      color: #38bdf8;
+    }
+
+    .reviews {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .review-card {
+      background: rgba(15,23,42,0.8);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      color: #cbd5e1;
+    }
+
+    .review-card h3 {
+      margin-bottom: 6px;
+      color: #38bdf8;
+    }
+
+    .stars {
+      color: gold;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background: rgba(15,23,42,0.9);
+      padding: 50px 8%;
+      color: #94a3b8;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    footer h3 {
+      color: #38bdf8;
+      margin-bottom: 10px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    footer a {
+      color: #94a3b8;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #38bdf8;
+    }
+
+    .copyright {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="./logo/mahiru.jpg" alt="Logo">
+      RAIS<span style="color:#f8fafc;">2GATHER</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="./index.html" style="color:#38bdf8;">Home</a></li>
+        <li><a href="./produk.html">Product</a></li>
+        <li><a href="./about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="cover">
+    <div class="cover-content">
+      <h1>RAIS2GATHER</h1>
+      <p>Freelancer yang bisa semuanya.</p>
+      <div class="button-group">
+        <button onclick="document.querySelector('.product-section').scrollIntoView({behavior:'smooth'})">Lihat Jasa</button>
+        <button class="pesan-btn" target="_blank" onclick="window.location.href='https://wa.me/6285796182078?text=Halo%20saya%20ingin%20memesan%20jasa%20di%20RAIS2GATHER'">Pesan Sekarang</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="product-section">
+    <h2>Produk Kami</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="./product/linux.svg" alt="Linux">
+        <div class="info">
+          <h3>Paket Instalasi Linux</h3>
+          <p>Distro apapun sini gw gas. Arch? tcih ez.</p>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="./product/windows.png" alt="Windows">
+        <div class="info">
+          <h3>Paket Instalasi Windows</h3>
+          <p>Install Windows 7, 10, 11 + Aktivasi Permanent.</p>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="./product/office.jpg" alt="Office">
+        <div class="info">
+          <h3>Aktivasi Microsoft Office</h3>
+          <p>Sesuai nama, malas gw ngetik lagi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="review-section">
+    <h2>Ulasan Pelanggan</h2>
+    <div class="reviews">
+      <div class="review-card">
+        <h3>Putri Hawa</h3>
+        <div class="stars">★★★★★</div>
+        <p>Dibantu install windows 10 Ghost Spectre, lumayan ringan dan enteng laptopnya.</p>
+      </div>
+      <div class="review-card">
+        <h3>Israwaty Husain</h3>
+        <div class="stars">★★★★★</div>
+        <p>dibantu dari awal sampai akhir, sangat ramah.</p>
+      </div>
+      <div class="review-card">
+        <h3>Ramdan Olii</h3>
+        <div class="stars">★★★★☆</div>
+        <p>Biar bintang 4 nya keisi.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h3>Alamat</h3>
+        <p>Jl. Trans Sulawesi, Gorontalo</p>
+      </div>
+      <div>
+        <h3>Media Sosial</h3>
+        <p><a href="https://www.instagram.com/alyciaperucia/">Instagram</a><br>
+            <a href="https://www.facebook.com/nyanta.py/">Facebook</a><br>
+      </div>
+      <div>
+        <h3>Kontak</h3>
+        <p>Email: dev@ramdan.fun</p>
+        <p>Telp: +62 857-9618-2078</p>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2025 RAIS2GATHER — Created by Ramdan
+    </div>
+  </footer>
+
+  <script>
+    const cover = document.querySelector('.cover');
+    for(let i = 0; i < 20; i++){
+      const p = document.createElement('div');
+      p.classList.add('particle');
+      const size = Math.random() * 6 + 2;
+      p.style.width = `${size}px`;
+      p.style.height = `${size}px`;
+      p.style.left = `${Math.random() * 100}%`;
+      p.style.animationDuration = `${5 + Math.random() * 8}s`;
+      p.style.animationDelay = `${Math.random() * 5}s`;
+      cover.appendChild(p);
+    }
+  </script>
+</body>
+</html>
